@@ -42,25 +42,25 @@ $(()=>{
 
     $('#genetic_algorithm').on('click',()=>{
             closeExistingSocket(socket)
-            socket = new WebSocket(`ws://${BASE_HOST}/ws/genetic_image_consumer/`);
+            socket = new WebSocket(`wss://${BASE_HOST}/ws/genetic_image_consumer/`);
             socket.onopen = onopen
             socket.onmessage = onmessage
     })
 
     $('#pso_algorithm').on('click',()=>{
         closeExistingSocket(socket)
-        socket = new WebSocket(`ws://${BASE_HOST}/ws/pso_image_consumer/`);
+        socket = new WebSocket(`wss://${BASE_HOST}/ws/pso_image_consumer/`);
         socket.onopen = onopen
         socket.onmessage = onmessage
     })
     $('#gan_algorithm').on('click',()=>{
         closeExistingSocket(socket)
-        socket = new WebSocket(`ws://${BASE_HOST}/ws/gan_image_consumer/`);
+        socket = new WebSocket(`wss://${BASE_HOST}/ws/gan_image_consumer/`);
         socket.onmessage = onmessage
     })
     $('#can_algorithm').on('click',()=>{
         closeExistingSocket(socket)
-        socket = new WebSocket(`ws://${BASE_HOST}/ws/can_image_consumer/`);
+        socket = new WebSocket(`wss://${BASE_HOST}/ws/can_image_consumer/`);
         socket.onmessage = onmessage
     })
 
