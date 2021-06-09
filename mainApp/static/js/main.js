@@ -25,6 +25,7 @@ function closeExistingSocket(socket){
 
 $(()=>{
     const BASE_HOST = 'licenta2021-grosu-cristian.herokuapp.com'
+    const LOCAL_HOST = '127.0.0.1:8000'
     var socket = null
     let onopen = async (event)=>{
                 let file = document.getElementById('uploaded_image').files[0];
@@ -42,7 +43,7 @@ $(()=>{
 
     $('#genetic_algorithm').on('click',()=>{
             closeExistingSocket(socket)
-            socket = new WebSocket(`wss://${BASE_HOST}/ws/genetic_image_consumer/`);
+            socket = new WebSocket(`ws://${BASE_HOST}/ws/genetic_image_consumer/`);
             socket.onopen = onopen
             socket.onmessage = onmessage
     })

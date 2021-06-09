@@ -13,6 +13,6 @@ from .routing import ws_urlpatterns
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mySite.settings')
 
 application = ProtocolTypeRouter({
-    'https': get_asgi_application(),
+    'http': get_asgi_application(),
     'websocket': AuthMiddlewareStack(URLRouter(ws_urlpatterns))
 })
