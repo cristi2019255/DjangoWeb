@@ -11,6 +11,7 @@ from channels.routing import URLRouter
 from .routing import ws_urlpatterns
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mySite.settings')
+
 django.setup()
 
 application = get_asgi_application()
