@@ -1,0 +1,52 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+{% load static %}
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<h1>Art generation Application</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-7 col-sm-4">
+            <nav class ="navbar bg-dark w-100 h-100">
+                <ul class ="nav navbar-nav text-center w-100">
+                    <li class ="nav-item p-2">
+                        <button id="genetic_algorithm" type="button" class="btn btn-primary w-100">Genetic Algorithm </button>
+                    </li>
+                    <li class ="nav-item p-2">
+                        <button id="pso_algorithm" type="button" class="btn btn-info w-100">Particle Swarm Optimisation </button>
+                    </li>
+                    <li class ="nav-item p-2">
+                        <button id="gan_algorithm" type="button" class="btn btn-warning w-100">Generative Adversarial Network </button>
+                    </li>
+                    <li class ="nav-item p-2">
+                        <button id="can_algorithm" type="button" class="btn btn-success w-100">Creative Adversarial Network </button>
+                    </li>
+                    <li class ="nav-item p-2 ">
+                        <button id="cancel" type="button" class="btn btn-danger btn-block w-100" >Cancel</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-5 col-sm-8">
+            <h6 id="iteration_count">Iteration 0</h6>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <img id="target_image_preview" class="img-thumbnail img-responsive w-100 h-100" src="../../../media/target_logo1.jpg" alt="your image" />
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <img id="generated_image" class="img-thumbnail img-responsive w-100 h-100" src="../../../media/generated_logo.png" alt="generated image"/>
+                </div>
+            </div>
+            <div id="files">
+                <label class="form-label" for="uploaded_image">Upload your image here: </label>
+                <input id="uploaded_image" type="file" class="form-control" accept="image/*" name="image" onchange="loadPreview(event)">
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+{% include "mainApp/includes/some_html.html" %}
+-->
+
+
+{% endblock %}
