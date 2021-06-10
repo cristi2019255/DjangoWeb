@@ -12,10 +12,6 @@ from .convert_img_base64 import readb64, image_to_byte_array, read64_np
 
 
 class GeneticImageConsumer(WebsocketConsumer):
-    def __init__(self):
-        self.cancel = False
-        WebsocketConsumer.__init__(self)
-
     def connect(self):
         self.accept()
         self.cancel = False
@@ -66,10 +62,6 @@ class GeneticImageConsumer(WebsocketConsumer):
 
 
 class PsoImageConsumer(WebsocketConsumer):
-    def __init__(self):
-        self.cancel = False
-        WebsocketConsumer.__init__(self)
-
     def connect(self):
         self.accept()
         self.cancel = False
