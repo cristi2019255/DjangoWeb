@@ -128,6 +128,7 @@ CHANNEL_LAYERS = {
         }
     }
 }
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.chache.RedisCache",
