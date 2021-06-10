@@ -10,10 +10,12 @@ from .convert_img_base64 import readb64, image_to_byte_array
 
 
 class GeneticImageConsumer(WebsocketConsumer):
+    def __init__(self):
+        self.cancel = False
+        WebsocketConsumer.__init__(self)
 
     def connect(self):
         self.accept()
-        self.cancel = False
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
