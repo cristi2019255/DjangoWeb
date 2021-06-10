@@ -24,8 +24,7 @@ function closeExistingSocket(socket){
 
 
 $(()=>{
-    const BASE_HOST = 'licenta2021-grosu-cristian.herokuapp.com'
-    const LOCAL_HOST = '127.0.0.1:8000'
+
     var socket = null
     let onopen = async (event)=>{
                 let file = document.getElementById('uploaded_image').files[0];
@@ -43,25 +42,25 @@ $(()=>{
 
     $('#genetic_algorithm').on('click',()=>{
             closeExistingSocket(socket)
-            socket = new WebSocket(`ws://${BASE_HOST}/ws/genetic_image_consumer/`);
+            socket = new WebSocket(`ws://${window.location.host}/ws/genetic_image_consumer/`);
             socket.onopen = onopen
             socket.onmessage = onmessage
     })
 
     $('#pso_algorithm').on('click',()=>{
         closeExistingSocket(socket)
-        socket = new WebSocket(`ws://${BASE_HOST}/ws/pso_image_consumer/`);
+        socket = new WebSocket(`ws://${window.location.host}/ws/pso_image_consumer/`);
         socket.onopen = onopen
         socket.onmessage = onmessage
     })
     $('#gan_algorithm').on('click',()=>{
         closeExistingSocket(socket)
-        socket = new WebSocket(`ws://${BASE_HOST}/ws/gan_image_consumer/`);
+        socket = new WebSocket(`ws://${window.location.host}/ws/gan_image_consumer/`);
         socket.onmessage = onmessage
     })
     $('#can_algorithm').on('click',()=>{
         closeExistingSocket(socket)
-        socket = new WebSocket(`ws://${BASE_HOST}/ws/can_image_consumer/`);
+        socket = new WebSocket(`ws://${window.location.host}/ws/can_image_consumer/`);
         socket.onmessage = onmessage
     })
 
