@@ -67,9 +67,9 @@ class PsoImageConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         data_base64 = str(text_data_json['message'])
-        self.width = str(text_data_json['width'])
-        self.height = str(text_data_json['height'])
-        self.imitating_factor = str(text_data_json['imitating_factor'])
+        self.width = int(text_data_json['width'])
+        self.height = int(text_data_json['height'])
+        self.imitating_factor = float(text_data_json['imitating_factor'])
 
         if data_base64 != "cancel":
             self.target_image = Image.fromarray(read64_np(data_base64), 'RGB')

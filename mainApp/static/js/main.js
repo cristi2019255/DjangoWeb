@@ -39,7 +39,7 @@ $(()=>{
 
     let onmessage = (event)=>{
                     let data = JSON.parse(event.data);
-                    document.getElementById('iteration_count').innerText = data.iteration;
+                    document.getElementById('iteration_count').innerText = "Current iteration:" + data.iteration;
                     document.getElementById('generated_image').src = "data:image/png;base64, " + data.message.split("'")[1];
     }
 
@@ -75,14 +75,75 @@ $(()=>{
         hide_all()
     })
 
+    function checkRange(el,min_val,max_val,type='int'){
+        let numeric_value = (type==='int') ? parseInt(el.val()):parseFloat(el.val())
+        let check = numeric_value<=max_val && numeric_value>=min_val
+        let color = check? '#03fc30' : 'red'
+        el.css('background',color)
+        return check
+    }
+
+
+     $('#ga_pop_size').on('change',()=>{
+            let el = $('#ga_pop_size')
+            checkRange(el,50,250)
+     })
+    $('#ga_shapes_size').on('change',()=>{
+            let el = $('#ga_shapes_size')
+            checkRange(el,50,500)
+    })
+    $('#ga_resolution').on('change',()=>{
+            let el = $('#ga_resolution')
+            checkRange(el,10,50)
+    })
+    $('#ga_max_iter').on('change',()=>{
+            let el = $('#ga_max_iter')
+            checkRange(el,100,50000)
+    })
+    $('#ga_elitism_rate').on('change',()=>{
+            let el = $('#ga_elitism_rate')
+            checkRange(el,0,1,'float')
+    })
+    $('#ga_mutation_rate').on('change',()=>{
+            let el = $('#ga_mutation_rate')
+            checkRange(el,0,1,'float')
+    })
+
+    $('#ga_reset_default_params').on('click',()=>{
+            $('#ga_max_iter').val(1000).css('background','white')
+            $('#ga_pop_size').val(100).css('background','white')
+            $('#ga_shapes_size').val(300).css('background','white')
+            $('#ga_resolution').val(25).css('background','white')
+            $('#ga_elitism_rate').val(0.2).css('background','white')
+            $('#ga_mutation_rate').val(0.3).css('background','white')
+    })
+
     $('#ga_algorithm_run').on('click',()=> {
         if ($("#genetic_algorithm_params").is(":visible")) {
-            let max_iter = $('#ga_max_iter').val()
-            let pop_size = $('#ga_pop_size').val()
-            let shapes_size = $('#ga_shapes_size').val()
-            let resolution = $('#ga_resolution').val()
-            let elitism_rate = $('#ga_elitism_rate').val()
-            let mutation_rate = $('#ga_mutation_rate').val()
+
+            let max_iter_el = $('#ga_max_iter')
+            let pop_size_el = $('#ga_pop_size')
+            let shapes_size_el = $('#ga_shapes_size')
+            let resolution_el = $('#ga_resolution')
+            let elitism_rate_el = $('#ga_elitism_rate')
+            let mutation_rate_el = $('#ga_mutation_rate')
+
+            let max_iter = max_iter_el.val()
+            let pop_size = pop_size_el.val()
+            let shapes_size = shapes_size_el.val()
+            let resolution = resolution_el.val()
+            let elitism_rate = elitism_rate_el.val()
+            let mutation_rate = mutation_rate_el.val()
+
+            if (checkRange(elitism_rate_el,0,1,'float') && checkRange(mutation_rate_el,0,1,'float')
+                && checkRange(max_iter_el,100,50000) && checkRange(pop_size_el,50,250)
+                && checkRange(shapes_size_el,50,500) && checkRange(resolution_el,10,50)
+            ){
+                $('#ga_error_msg').hide()
+            }else{
+                $('#ga_error_msg').show()
+                return
+            }
 
             closeExistingSocket(socket)
             socket = new WebSocket(`ws://${window.location.host}/ws/genetic_image_consumer/`);
@@ -105,11 +166,43 @@ $(()=>{
         }
     })
 
+
+
+    $('#pso_imitation_factor').on('change',()=>{
+        let el = $('#pso_imitation_factor')
+        checkRange(el,0,1,'float')
+    })
+    $('#pso_width').on('change',()=>{
+        let el = $('#pso_width')
+        checkRange(el,64,300)
+    })
+    $('#pso_height').on('change',()=>{
+        let el = $('#pso_height')
+        checkRange(el,64,300)
+    })
+
+    $('#pso_reset_default_params').on('click',()=>{
+            $('#pso_imitation_factor').val(0.8).css('background','white')
+            $('#pso_width').val(128).css('background','white')
+            $('#pso_height').val(128).css('background','white')
+    })
     $('#pso_algorithm_run').on('click',()=> {
         if ($("#pso_algorithm_params").is(":visible")) {
-            let imitating_factor = $('#pso_imitation_factor').val()
-            let width = $('#pso_width').val()
-            let height = $('#pso_height').val()
+            let imitating_factor_el = $('#pso_imitation_factor')
+            let width_el = $('#pso_width')
+            let height_el = $('#pso_height')
+            let imitating_factor = imitating_factor_el.val()
+            let width = width_el.val()
+            let height = height_el.val()
+
+            if (checkRange(imitating_factor_el,0,1,'float')
+                && checkRange(width_el,64,300) && checkRange(height_el,64,300)){
+                $('#pso_error_msg').hide()
+            }else{
+                $('#pso_error_msg').show()
+                return
+            }
+
             closeExistingSocket(socket)
             socket = new WebSocket(`ws://${window.location.host}/ws/pso_image_consumer/`);
             socket.onmessage = onmessage

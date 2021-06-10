@@ -1,0 +1,4 @@
+#pso_error_msg, #ga_error_msg{
+    display: none;
+    color: red;
+}

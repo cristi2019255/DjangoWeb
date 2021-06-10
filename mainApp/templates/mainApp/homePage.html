@@ -30,21 +30,22 @@
                               <div class="form-group">
                                 <label for="ga_pop_size">Population Size</label>
                                 <input type="number" class="form-control" id="ga_pop_size" aria-describedby="ga_pop_size_help" value="100">
-                                <small id="ga_pop_size_help" class="form-text text-muted">Population size for genetic algorithm</small>
+                                <small id="ga_pop_size_help" class="form-text text-muted">Population size for genetic algorithm [50, 250]</small>
                               </div>
                               <div class="form-group">
                                 <label for="ga_shapes_size">Shapes Size</label>
                                 <input type="number" class="form-control" id="ga_shapes_size" aria-describedby="ga_shapes_size_help" value="300">
-                                <small id="ga_pop_shapes_help" class="form-text text-muted">How many shapes will be on the generated image</small>
+                                <small id="ga_pop_shapes_help" class="form-text text-muted">How many shapes will be on the generated image [50, 500]</small>
                               </div>
                               <div class="form-group">
                                 <label for="ga_resolution">Resolution</label>
-                                <input type="number" class="form-control" id="ga_resolution" value="25">
+                                <input type="number" class="form-control" id="ga_resolution" aria-describedby="ga_resolution_help"  value="25">
+                                  <small id="ga_resolution_help" class="form-text text-muted">This parameter has different meaning for different 2D shapes [10, 50]</small>
                               </div>
                               <div class="form-group">
                                 <label for="ga_max_iter">Iterations</label>
                                 <input type="number" class="form-control" id="ga_max_iter" aria-describedby="ga_max_iter_help" value="5000">
-                                <small id="ga_max_iter_help" class="form-text text-muted">The number of generation for algorithm</small>
+                                <small id="ga_max_iter_help" class="form-text text-muted">The number of generation for algorithm [100,50000]</small>
                               </div>
                               <div class="form-group">
                                 <label for="ga_elitism_rate">Elitism Rate</label>
@@ -64,9 +65,19 @@
                                       <option value="rectangle">Rectangles</option>
                                     </select>-->
                               </div>
-
-                              <button id="ga_algorithm_run" type="submit" class="btn btn-danger">Run Algorithm</button>
+                              <div class="row">
+                                  <div class="col-6">
+                                      <button id="ga_reset_default_params" type="submit" class="btn btn-warning">Reset defaults</button>
+                                  </div>
+                                  <div class="col-6">
+                                      <button id="ga_algorithm_run" type="submit" class="btn btn-danger">Run Algorithm</button>
+                                  </div>
+                              </div>
                             </div>
+                            <small id="ga_error_msg">
+                                Some parameters are not in the accepted range:
+                                Please check ranges and run algorithm again
+                            </small>
                         </div>
                     </li>
                     <li class ="nav-item p-2">
@@ -88,17 +99,33 @@
                                             <input type="number" class="form-control" id="pso_height" aria-describedby="pso_size_help" value="128">
                                       </div>
                                   </div>
-                                <small id="pso_size_help" class="form-text text-muted">Generated image size</small>
+                                <small id="pso_size_help" class="form-text text-muted">Generated image size accepted range [64,300]</small>
                               </div>
-                              <button id="pso_algorithm_run" type="submit" class="btn btn-danger">Run Algorithm</button>
+                                <div class="row">
+                                    <div class="col-6">
+                                      <button id="pso_reset_default_params" type="submit" class="btn btn-warning">Reset defaults</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="pso_algorithm_run" type="submit" class="btn btn-danger">Run Algorithm</button>
+                                    </div>
+                                </div>
                             </div>
+                            <small id="pso_error_msg">
+                                Some parameters are not in the accepted range:
+                                <br>
+                                Imitating factor [0,1]
+                                <br>
+                                Width, Height [64,300]
+                                <br>
+                                Please check ranges and run algorithm again
+                            </small>
                         </div>
                     </li>
                 </ul>
             </nav>
         </div>
         <div class="col-5 col-sm-8">
-            <h6 id="iteration_count">Iteration 0</h6>
+            <h5 id="iteration_count"></h5>
             <div class="row">
                 <div class="col-xs-6 col-md-6">
                     <img id="target_image_preview" class="img-thumbnail img-responsive w-100 h-100" src="../../../media/target_logo1.jpg" alt="your image" />
@@ -113,7 +140,7 @@
             </div>
             <div id="ga_description" class="container w-100 mt-5">
                 <p>
-                    Genetic algorithm description
+                    In computer science and operations research, a genetic algorithm (GA) is a metaheuristic inspired by the process of natural selection that belongs to the larger class of evolutionary algorithms (EA). Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on biologically inspired operators such as mutation, crossover and selection.[1]
                 </p>
             </div>
             <div id="pso_description" class="container w-100 mt-5">
