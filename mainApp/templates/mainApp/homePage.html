@@ -120,6 +120,8 @@
                                 <br>
                                 Imitating factor [0,1]
                                 <br>
+                                Iterations [50,1000]
+                                <br>
                                 Width, Height [64,300]
                                 <br>
                                 Please check ranges and run algorithm again
@@ -147,7 +149,10 @@
                 <details>
                     <summary>Genetic Algorithm</summary>
                     <small>
-                        In computer science and operations research, a genetic algorithm (GA) is a metaheuristic inspired by the process of natural selection that belongs to the larger class of evolutionary algorithms (EA). Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on biologically inspired operators such as mutation, crossover and selection.[1]
+                        In computer science and operations research, a genetic algorithm (GA) is a metaheuristic inspired by the process
+                        of natural selection that belongs to the larger class of evolutionary algorithms (EA).
+                        Genetic algorithms are commonly used to generate high-quality solutions to optimization and search
+                        problems by relying on biologically inspired operators such as mutation, crossover and selection.
                     </small>
                 </details>
             </div>
@@ -155,11 +160,26 @@
                 <details>
                     <summary>PSO Algorithm description</summary>
                     <small>
-                        In computational science, particle swarm optimization (PSO)[1] is a computational method that optimizes a problem by iteratively trying to improve a candidate solution with regard to a given measure of quality. It solves a problem by having a population of candidate solutions, here dubbed particles, and moving these particles around in the search-space according to simple mathematical formula over the particle's position and velocity. Each particle's movement is influenced by its local best known position, but is also guided toward the best known positions in the search-space, which are updated as better positions are found by other particles. This is expected to move the swarm toward the best solutions.
+                        In computational science, particle swarm optimization (PSO) is a computational method that optimizes
+                        a problem by iteratively trying to improve a candidate solution with regard to a given measure of quality.
+                        It solves a problem by having a population of candidate solutions, here dubbed particles, and moving these
+                        particles around in the search-space according to simple mathematical formula over the particle's position and
+                        velocity. Each particle's movement is influenced by its local best known position, but is also guided toward
+                        the best known positions in the search-space, which are updated as better positions are found by other particles.
+                        This is expected to move the swarm toward the best solutions.
                         <br>
-                        PSO is originally attributed to Kennedy, Eberhart and Shi[2][3] and was first intended for simulating social behaviour,[4] as a stylized representation of the movement of organisms in a bird flock or fish school. The algorithm was simplified and it was observed to be performing optimization. The book by Kennedy and Eberhart[5] describes many philosophical aspects of PSO and swarm intelligence. An extensive survey of PSO applications is made by Poli.[6][7] Recently, a comprehensive review on theoretical and experimental works on PSO has been published by Bonyadi and Michalewicz.[8]
+                        PSO is originally attributed to Kennedy, Eberhart and Shi and was first intended for simulating social behaviour,
+                        as a stylized representation of the movement of organisms in a bird flock or fish school.
+                        The algorithm was simplified and it was observed to be performing optimization. The book by Kennedy and Eberhart
+                        describes many philosophical aspects of PSO and swarm intelligence. An extensive survey of PSO
+                        applications is made by Poli. Recently, a comprehensive review on theoretical and experimental works
+                        on PSO has been published by Bonyadi and Michalewicz.
                         <br>
-                        PSO is a metaheuristic as it makes few or no assumptions about the problem being optimized and can search very large spaces of candidate solutions. Also, PSO does not use the gradient of the problem being optimized, which means PSO does not require that the optimization problem be differentiable as is required by classic optimization methods such as gradient descent and quasi-newton methods. However, metaheuristics such as PSO do not guarantee an optimal solution is ever found.
+                        PSO is a metaheuristic as it makes few or no assumptions about the problem being optimized and can search
+                        very large spaces of candidate solutions. Also, PSO does not use the gradient of the problem being optimized,
+                        which means PSO does not require that the optimization problem be differentiable as is required by classic
+                        optimization methods such as gradient descent and quasi-newton methods. However,
+                        metaheuristics such as PSO do not guarantee an optimal solution is ever found.
                     </small>
                 </details>
             </div>
@@ -167,7 +187,23 @@
                 <details>
                     <summary>GAN description</summary>
                     <small>
+                        A generative adversarial network (GAN) is a class of machine learning frameworks designed by
+                        Ian Goodfellow and his colleagues in 2014.
+                        Two neural networks contest with each other in a game
+                        (in the form of a zero-sum game, where one agent's gain is another agent's loss).
 
+                        Given a training set, this technique learns to generate new data with the same statistics as the
+                        training set. For example, a GAN trained on photographs can generate new photographs that look at
+                        least superficially authentic to human observers, having many realistic characteristics.
+                        Though originally proposed as a form of generative model for unsupervised learning,
+                        GANs have also proven useful for semi-supervised learning, fully supervised learning,
+                        and reinforcement learning.
+
+                        The core idea of a GAN is based on the "indirect" training through the discriminator,
+                        which itself is also being updated dynamically.
+                        This basically means that the generator is not trained to minimize the distance to a
+                        specific image, but rather to fool the discriminator.
+                        This enables the model to learn in an unsupervised manner.
                     </small>
                 </details>
             </div>
@@ -175,7 +211,12 @@
                 <details>
                     <summary>CAN description</summary>
                     <small>
-
+                      CANs are based off of Generative Adversarial Networks (GANs), which were created by
+                      Ian Goodfellow and some of his coworkers a few years ago. In order to understand CANs, you need to understand GANs.
+                      GANs are a type of neural network that actually consists of two neural networks -- a generator and a discriminator.
+                      The discriminator’s job is to take images as input and determine whether they are real or fake
+                        (i.e. created by humans or by the generator).
+                      The generator’s job is to generate new images that trick the discriminator into thinking they are real.
                     </small>
                 </details>
             </div>
