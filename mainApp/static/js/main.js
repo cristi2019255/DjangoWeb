@@ -39,7 +39,8 @@ $(()=>{
 
     let onmessage = (event)=>{
                     let data = JSON.parse(event.data);
-                    document.getElementById('iteration_count').innerText = "Current iteration:" + data.iteration;
+                    let prefix = $.isNumeric(data.iteration) ? "Current iteration:" : ""
+                    document.getElementById('iteration_count').innerText = prefix + data.iteration;
                     document.getElementById('generated_image').src = "data:image/png;base64, " + data.message.split("'")[1];
     }
 
