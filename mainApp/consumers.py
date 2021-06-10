@@ -67,6 +67,7 @@ class PsoImageConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         data_base64 = str(text_data_json['message'])
+        self.max_iter = int(text_data_json['max_iter'])
         self.width = int(text_data_json['width'])
         self.height = int(text_data_json['height'])
         self.imitating_factor = float(text_data_json['imitating_factor'])
@@ -77,6 +78,7 @@ class PsoImageConsumer(WebsocketConsumer):
 
     def run(self):
         self.resolver = PSO(width=self.width, height=self.height,
+                            max_iter=self.max_iter,
                             target_image=self.target_image,
                             imitating_factor=self.imitating_factor, imitating=True)
 

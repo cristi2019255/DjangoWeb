@@ -131,6 +131,7 @@ $(()=>{
             let resolution_el = $('#ga_resolution')
             let elitism_rate_el = $('#ga_elitism_rate')
             let mutation_rate_el = $('#ga_mutation_rate')
+            let shape_el = $('#ga_shape')
 
             let max_iter = max_iter_el.val()
             let pop_size = pop_size_el.val()
@@ -138,6 +139,7 @@ $(()=>{
             let resolution = resolution_el.val()
             let elitism_rate = elitism_rate_el.val()
             let mutation_rate = mutation_rate_el.val()
+            let shape = shape_el.val()
 
             if (checkRange(elitism_rate_el,0,1,'float') && checkRange(mutation_rate_el,0,1,'float')
                 && checkRange(max_iter_el,100,50000) && checkRange(pop_size_el,50,250)
@@ -158,7 +160,7 @@ $(()=>{
                 let object = JSON.stringify(
                     {message: data,
                            max_iter : max_iter,
-                           shape:'line',
+                           shape:shape,
                            pop_size: pop_size,
                            shapes_size : shapes_size,
                            resolution : resolution,
@@ -176,6 +178,10 @@ $(()=>{
         let el = $('#pso_imitation_factor')
         checkRange(el,0,1,'float')
     })
+    $('#pso_max_iter').on('change',()=>{
+        let el = $('#pso_max_iter')
+        checkRange(el,50,1000)
+    })
     $('#pso_width').on('change',()=>{
         let el = $('#pso_width')
         checkRange(el,64,300)
@@ -189,17 +195,20 @@ $(()=>{
             $('#pso_imitation_factor').val(0.8).css('background','white')
             $('#pso_width').val(128).css('background','white')
             $('#pso_height').val(128).css('background','white')
+            $('#pso_max_iter').val(150).css('background','white')
     })
     $('#pso_algorithm_run').on('click',()=> {
         if ($("#pso_algorithm_params").is(":visible")) {
             let imitating_factor_el = $('#pso_imitation_factor')
+            let max_iter_el = $('#pso_max_iter')
             let width_el = $('#pso_width')
             let height_el = $('#pso_height')
             let imitating_factor = imitating_factor_el.val()
             let width = width_el.val()
             let height = height_el.val()
+            let max_iter = max_iter_el.val()
 
-            if (checkRange(imitating_factor_el,0,1,'float')
+            if (checkRange(imitating_factor_el,0,1,'float') && checkRange(max_iter_el,50,1000)
                 && checkRange(width_el,64,300) && checkRange(height_el,64,300)){
                 $('#pso_error_msg').hide()
             }else{
@@ -216,6 +225,7 @@ $(()=>{
                 let object = JSON.stringify(
                     {message: data,
                            imitating_factor : imitating_factor,
+                           max_iter: max_iter,
                            width : width,
                            height: height,
                     })

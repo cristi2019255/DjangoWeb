@@ -58,12 +58,12 @@
                                 <small id="ga_mutation_rate_help" class="form-text text-muted">Mutation rate in range [0,1]</small>
                               </div>
                               <div class="form-group m-2 mb-4">
-                                    <!--<label for="ga_shape">Choose a geometrical 2D shape:</label>
+                                    <label for="ga_shape">Choose a geometrical 2D shape:</label>
                                     <select id="ga_shape" name="ga_shape_list">
                                       <option value="line">Lines</option>
                                       <option value="circle">Circles</option>
-                                      <option value="rectangle">Rectangles</option>
-                                    </select>-->
+                                      <option value="rectangular">Rectangles</option>
+                                    </select>
                               </div>
                               <div class="row">
                                   <div class="col-sm m-1">
@@ -87,6 +87,11 @@
                                 <label for="pso_imitation_factor">Imitation Factor</label>
                                 <input type="number" class="form-control" id="pso_imitation_factor" aria-describedby="pso_imitation_factor_help" value="0.8">
                                 <small id="pso_imitation_factor_help" class="form-text text-muted">Imitating the target image, factor in range [0,1]</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="pso_max_iter">Iterations</label>
+                                <input type="number" class="form-control" id="pso_max_iter" aria-describedby="pso_max_iter_help" value="150">
+                                <small id="pso_max_iter_help" class="form-text text-muted">Maximum number of iterations in range [50,1000]</small>
                               </div>
                               <div class="form-group">
                                   <div class="row">
