@@ -72,8 +72,7 @@ class PsoImageConsumer(WebsocketConsumer):
         self.imitating_factor = float(text_data_json['imitating_factor'])
 
         if data_base64 != "cancel":
-            self.target_image = Image.fromarray(read64_np(data_base64), 'RGB')
-            self.target_image.resize((128, 128))
+            self.target_image = Image.fromarray(read64_np(data_base64,self.width,self.height), 'RGB')
             self.run()
 
     def run(self):
