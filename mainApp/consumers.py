@@ -6,9 +6,9 @@ from PIL import Image
 from channels.exceptions import StopConsumer
 from channels.generic.websocket import WebsocketConsumer
 
-from mySite.mySite.GeneticAlgorithm.GeneticAlgorithm import GeneticAlgorithm
-from mySite.mySite.PsoAlgorithm.PSO import PSO
-from mySite.mySite.convert_img_base64 import readb64, image_to_byte_array, read64_np
+from .GeneticAlgorithm.GeneticAlgorithm import GeneticAlgorithm
+from .PsoAlgorithm.PSO import PSO
+from .convert_img_base64 import readb64, image_to_byte_array, read64_np
 
 
 class GeneticImageConsumer(WebsocketConsumer):

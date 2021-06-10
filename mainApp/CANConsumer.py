@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from PIL import Image
 from channels.generic.websocket import WebsocketConsumer
-from .convert_img_base64 import readb64, image_to_byte_array
+from .convert_img_base64 import image_to_byte_array
 import torch.nn as nn
 
 def denomralization(img_tensors):

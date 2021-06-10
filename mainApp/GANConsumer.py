@@ -1,14 +1,12 @@
 
 import base64
 import json
-import os
 
 import torch
 import numpy as np
-import matplotlib.pyplot as plt
 from PIL import Image
 from channels.generic.websocket import WebsocketConsumer
-from .convert_img_base64 import readb64, image_to_byte_array
+from .convert_img_base64 import image_to_byte_array
 import torch.nn as nn
 
 
