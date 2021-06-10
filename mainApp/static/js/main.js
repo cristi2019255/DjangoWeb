@@ -43,7 +43,7 @@ $(()=>{
 
     $('#genetic_algorithm').on('click',()=>{
             closeExistingSocket(socket)
-            socket = new WebSocket(`ws://${BASE_HOST}/ws/genetic_image_consumer/`);
+            socket = new WebSocket(`ws://${LOCAL_HOST}/ws/genetic_image_consumer/`);
             socket.onopen = onopen
             socket.onmessage = onmessage
     })
