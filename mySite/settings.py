@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-5hxh&hq^e+5np06(9_wj79u-0_e5aw=o(j=*_917%snm0a=z3j
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = ['licenta2021-grosu-cristian.herokuapp.com']
+ALLOWED_HOST = ['licenta2021-grosu-cristian.herokuapp.com']
 
 # Application definition
 
