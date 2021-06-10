@@ -1,12 +1,8 @@
 from channels.exceptions import StopConsumer
 import base64
-import io
 import json
 import threading
-import time
 from PIL import Image
-import cv2
-import numpy as np
 from channels.generic.websocket import WebsocketConsumer
 
 from .GeneticAlgorithm.GeneticAlgorithm import GeneticAlgorithm
