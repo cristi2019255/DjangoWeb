@@ -48,6 +48,7 @@ $(()=>{
         hide_all()
         $('#ga_description').show()
         $('#genetic_algorithm_params').show()
+        closeExistingSocket(socket)
     })
 
     $('#pso_algorithm').on('click',()=>{
