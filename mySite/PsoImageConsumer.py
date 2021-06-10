@@ -1,4 +1,3 @@
-import cv2
 from channels.exceptions import StopConsumer
 import base64
 import json
@@ -7,9 +6,7 @@ from PIL import Image
 
 from channels.generic.websocket import WebsocketConsumer
 from .PsoAlgorithm.PSO import PSO
-from .convert_img_base64 import readb64,read64_np, image_to_byte_array
-
-
+from .convert_img_base64 import readb64, read64_np, image_to_byte_array
 
 
 class PsoImageConsumer(WebsocketConsumer):
