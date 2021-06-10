@@ -1,3 +1,4 @@
+
 import base64
 import json
 import os
@@ -86,5 +87,3 @@ class GANImageConsumer(WebsocketConsumer):
         image_generated_bytes = image_to_byte_array(Image.fromarray(np_arr))
         encoded_string = str(base64.b64encode(image_generated_bytes))
         self.send(json.dumps({'iteration': 'Model is pretrained', 'message': encoded_string}))
-
-
