@@ -78,7 +78,7 @@ class GANImageConsumer(WebsocketConsumer):
         path = pathlib.Path(__file__).parent.absolute()
 
         generator.load_state_dict(
-            torch.load(f"{path}\G_gan.ckpt", map_location='cpu')
+            torch.load(f"{path}/G_gan.ckpt", map_location='cpu')
         )
         latent_tensor = torch.randn(1, 200, 1, 1)
         fake_image = generator(latent_tensor)
