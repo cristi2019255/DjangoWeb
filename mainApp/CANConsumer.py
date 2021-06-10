@@ -1,5 +1,7 @@
 import base64
 import json
+import os
+import pathlib
 
 import numpy as np
 import torch
@@ -59,8 +61,11 @@ class CANImageConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         generator = build_generator_for_CAN_model(100)
-        generator.load_state_dict(torch.load("C:\\Users\\Asus\\PycharmProjects\\mySite\\mySite\\mySite\\G_can.ckpt"
-                                             , map_location='cpu'))
+        path = pathlib.Path(__file__).parent.absolute()
+
+        generator.load_state_dict(
+            torch.load(f"{path}\G_can.ckpt", map_location='cpu')
+        )
 
         latent_tensor = torch.randn(1, 100, 1, 1)
         fake_image = generator(latent_tensor)

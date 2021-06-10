@@ -1,6 +1,9 @@
 
 import base64
 import json
+import os
+import pathlib
+import sys
 
 import torch
 import numpy as np
@@ -72,10 +75,11 @@ class GANImageConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         generator = build_generator_for_GAN_model(200)
+        path = pathlib.Path(__file__).parent.absolute()
 
         generator.load_state_dict(
-            torch.load( "C:\\Users\\Asus\\PycharmProjects\\mySite\\mySite\\mySite\\G_gan.ckpt",
-                       map_location='cpu'))
+            torch.load(f"{path}\G_gan.ckpt", map_location='cpu')
+        )
         latent_tensor = torch.randn(1, 200, 1, 1)
         fake_image = generator(latent_tensor)
         fake_image = denomralization(fake_image).detach()[0]
