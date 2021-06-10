@@ -60,7 +60,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mySite.wsgi.application'
 
-ASGI_APPLICATION = 'mySite.asgi.application'
+#ASGI_APPLICATION = 'mySite.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
