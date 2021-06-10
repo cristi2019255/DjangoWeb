@@ -19,27 +19,25 @@ class GeneticImageConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         data_base64 = str(text_data_json['message'])
-
-        if data_base64 == "cancel":
-            print(data_base64)
-        else:
-            self.target_image = readb64(data_base64)
-            self.run()
+        self.target_image = readb64(data_base64)
+        self.shape = str(text_data_json['shape'])
+        self.pop_size = int(text_data_json['pop_size'])
+        self.shapes_size = int(text_data_json['shapes_size'])
+        self.resolution = int(text_data_json['resolution'])
+        self.max_iter = int(text_data_json['max_iter'])
+        self.elitism_rate = float(text_data_json['elitism_rate'])
+        self.mutation_rate = float(text_data_json['mutation_rate'])
+        self.run()
 
     def run(self):
-
-        shape = "line"
-        pop_size = 100
-        shapes_size = 300
-        resolution = 25
-        max_iter = 1000
-        elitism_rate = 0.2
-        mutation_rate = 0.3
-
-        image = self.target_image
-
-        self.resolver = GeneticAlgorithm(pop_size, image, shape=shape, shapes_size=shapes_size, resolution=resolution,
-                                    max_iter=max_iter, elitism_rate=elitism_rate, mutation_rate=mutation_rate)
+        self.resolver = GeneticAlgorithm(self.pop_size,
+                                         self.target_image,
+                                         shape=self.shape,
+                                         shapes_size=self.shapes_size,
+                                         resolution=self.resolution,
+                                         max_iter=self.max_iter,
+                                         elitism_rate=self.elitism_rate,
+                                         mutation_rate=self.mutation_rate)
 
         self.thread = threading.Thread(target=self.next)  # This thread will work same but
         self.thread.start()  # also allows to call disconnect()
@@ -69,6 +67,9 @@ class PsoImageConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         data_base64 = str(text_data_json['message'])
+        self.width = str(text_data_json['width'])
+        self.height = str(text_data_json['height'])
+        self.imitating_factor = str(text_data_json['imitating_factor'])
 
         if data_base64 != "cancel":
             self.target_image = Image.fromarray(read64_np(data_base64), 'RGB')
@@ -76,12 +77,9 @@ class PsoImageConsumer(WebsocketConsumer):
             self.run()
 
     def run(self):
-        imitation_factor = 0.8
-
-        target_image = self.target_image
-
-        self.resolver = PSO(width=128, height=128,
-                            target_image=target_image, imitating_factor=imitation_factor, imitating=True)
+        self.resolver = PSO(width=self.width, height=self.height,
+                            target_image=self.target_image,
+                            imitating_factor=self.imitating_factor, imitating=True)
 
         self.thread = threading.Thread(target=self.next)  # This thread will work same but
         self.thread.start()  # also allows to call disconnect()
