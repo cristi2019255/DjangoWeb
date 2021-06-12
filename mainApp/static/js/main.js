@@ -28,6 +28,7 @@ $(()=>{
     function hide_all() {
         $('#genetic_algorithm_params').hide()
         $('#pso_algorithm_params').hide()
+        $('#k_means_algorithm_params').hide()
         $('#ga_description').hide()
         $('#pso_description').hide()
         $('#gan_description').hide()
@@ -70,6 +71,11 @@ $(()=>{
         closeExistingSocket(socket)
         socket = new WebSocket(`ws://${window.location.host}/ws/can_image_consumer/`);
         socket.onmessage = onmessage
+    })
+
+    $('#k_means_algorithm').on('click',()=>{
+        hide_all()
+        closeExistingSocket(socket)
     })
 
     $('#cancel').on('click',async ()=>{
@@ -226,6 +232,35 @@ $(()=>{
                            height: height,
                     })
                 socket.send(object)
+            }
+        }
+    })
+
+     $('#k_means_n_colors').on('change',()=>{
+        let el = $('#k_means_n_colors')
+        checkRange(el,1,255)
+    })
+
+    $('#k_means_reset_default_params').on('click',()=>{
+         $('#k_means_n_colors').val(4).css('background','white')
+    })
+
+    $('#k_means_algorithm_run').on('click',()=> {
+        if ($("#k_means_algorithm_params").is(":visible")) {
+            let n_colors_el = $('#k_means_n_colors')
+            if (checkRange(n_colors_el,1,255)){
+                closeExistingSocket(socket)
+                socket = new WebSocket(`ws://${window.location.host}/ws/k_means_image_consumer/`);
+                socket.onmessage = onmessage
+                socket.onopen = async (event) => {
+                    let file = document.getElementById('uploaded_image').files[0];
+                    let data = await getBase64(file)
+                    let object = JSON.stringify(
+                        {message: data,
+                               n_colors: n_colors_el.val()
+                        })
+                    socket.send(object)
+                }
             }
         }
     })

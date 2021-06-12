@@ -21,6 +21,9 @@
                     <li class ="nav-item p-2">
                         <button id="can_algorithm" type="button" class="btn btn-success w-100">Creative Adversarial Network </button>
                     </li>
+                    <li class ="nav-item p-2">
+                        <button id="k_means_algorithm" type="button" class="btn btn-dark w-100">K-Means image segmentation </button>
+                    </li>
                     <li class ="nav-item p-2 ">
                         <button id="cancel" type="button" class="btn btn-danger btn-block w-100" >Cancel</button>
                     </li>
@@ -123,6 +126,33 @@
                                 Iterations [50,1000]
                                 <br>
                                 Width, Height [64,300]
+                                <br>
+                                Please check ranges and run algorithm again
+                            </small>
+                        </div>
+                    </li>
+
+                    <li class ="nav-item p-2">
+                        <div id="k_means_algorithm_params">
+                            <div>
+                              <div class="form-group">
+                                <label for="k_means_n_colors">Number of colors</label>
+                                <input type="number" class="form-control" id="k_means_n_colors" aria-describedby="pso_imitation_factor_help" value="4">
+                                <small id="k_means_n_colors_help" class="form-text text-muted">Number of colors for segmentation with k-means in range [1,255]</small>
+                              </div>
+                                <div class="row">
+                                    <div class="col-sm m-1">
+                                      <button id="k_means_reset_default_params" type="submit" class="btn btn-warning">Reset defaults</button>
+                                    </div>
+                                    <div class="col-sm m-1">
+                                        <button id="k_means_algorithm_run" type="submit" class="btn btn-danger">Run Algorithm</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <small id="k_means_error_msg">
+                                Some parameters are not in the accepted range:
+                                <br>
+                                Colors number [1, 255]
                                 <br>
                                 Please check ranges and run algorithm again
                             </small>
