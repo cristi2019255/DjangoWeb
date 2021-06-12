@@ -1,10 +1,6 @@
-
 import base64
 import json
-import os
 import pathlib
-import sys
-
 import torch
 import numpy as np
 from PIL import Image
@@ -32,6 +28,11 @@ def get_default_device():
 
 
 def build_generator_for_GAN_model(latent_size):
+    """
+    Building generator for using model from .ckpt file
+    :param latent_size: size of latent vector
+    :return: model of generator
+    """
     model = nn.Sequential(
 
         # input: latent_size x 1 x 1
@@ -87,5 +88,5 @@ class GANImageConsumer(WebsocketConsumer):
         np_arr = (np.asarray(fake_image) * 255).astype(np.uint8)
 
         image_generated_bytes = image_to_byte_array(Image.fromarray(np_arr))
-        encoded_string = str(base64.b64encode(image_generated_bytes))
-        self.send(json.dumps({'iteration': 'Model is pretrained', 'message': encoded_string}))
+        encoded_image_string = str(base64.b64encode(image_generated_bytes))
+        self.send(json.dumps({'iteration': 'Model is pretrained', 'message': encoded_image_string}))

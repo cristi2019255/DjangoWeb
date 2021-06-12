@@ -1,6 +1,5 @@
 import base64
 import json
-import os
 import pathlib
 
 import numpy as np
@@ -14,6 +13,11 @@ def denomralization(img_tensors):
     return img_tensors * 0.5 + 0.5
 
 def build_generator_for_CAN_model(latent_size):
+    """
+        Building generator for using model from .ckpt file
+        :param latent_size: size of latent vector
+        :return: model of generator
+    """
     model = nn.Sequential(
 
         # input: latent_size x 1 x 1
@@ -53,6 +57,7 @@ def build_generator_for_CAN_model(latent_size):
     )
     return model
 
+
 class CANImageConsumer(WebsocketConsumer):
     def __init__(self):
         self.cancel = False
@@ -74,5 +79,5 @@ class CANImageConsumer(WebsocketConsumer):
         np_arr = (np.asarray(fake_image) * 255).astype(np.uint8)
 
         image_generated_bytes = image_to_byte_array(Image.fromarray(np_arr))
-        encoded_string = str(base64.b64encode(image_generated_bytes))
-        self.send(json.dumps({'iteration': 'Pretrained Model', 'message': encoded_string}))
+        encoded_image_string = str(base64.b64encode(image_generated_bytes))
+        self.send(json.dumps({'iteration': 'Pretrained Model', 'message': encoded_image_string}))

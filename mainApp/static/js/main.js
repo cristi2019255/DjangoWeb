@@ -1,5 +1,5 @@
 function loadPreview(event) {
-    var output = document.getElementById('target_image_preview')
+    let output = document.getElementById('target_image_preview')
     output.src = URL.createObjectURL(event.target.files[0])
     output.onload = () => {
         URL.revokeObjectURL(output.src)
@@ -24,8 +24,6 @@ function closeExistingSocket(socket){
 
 
 $(()=>{
-
-
 
     function hide_all() {
         $('#genetic_algorithm_params').hide()
@@ -171,8 +169,6 @@ $(()=>{
             }
         }
     })
-
-
 
     $('#pso_imitation_factor').on('change',()=>{
         let el = $('#pso_imitation_factor')

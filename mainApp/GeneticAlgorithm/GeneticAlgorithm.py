@@ -63,7 +63,7 @@ class GeneticAlgorithm:
 
         self.population = []
         self.population = new_population
-        cv2.imwrite('../../media/' + "/Step_" + str(np.random.randint(1, 100)) + ".jpg", self.best_genome.image)
+        # cv2.imwrite('../../media/' + "/Step_" + str(np.random.randint(1, 100)) + ".jpg", self.best_genome.image)
         return self.best_genome.image
 
     def resolve(self):

@@ -1,19 +1,10 @@
-import time
-
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse, HttpResponseRedirect
-
 from django.shortcuts import render
-from django.template.context_processors import csrf
 
 
 def index(request):
     return render(request, 'mainApp/homePage.html')
 
-
-def contact(request):
-    return render(request, 'mainApp/basic.html', {'values': ['If you have any question please contact us',
-                                                             '060119977', 'mail@email.com']})
 
 
 def upload_image(request):
