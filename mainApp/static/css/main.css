@@ -1,4 +1,4 @@
-#pso_error_msg, #ga_error_msg{
+#pso_error_msg, #ga_error_msg, #k_means_error_msg{
     display: none;
     color: red;
 }

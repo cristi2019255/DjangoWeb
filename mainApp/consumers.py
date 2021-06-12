@@ -1,6 +1,5 @@
 import base64
 import json
-import random
 import threading
 
 import numpy as np
@@ -8,7 +7,7 @@ from PIL import Image
 from channels.exceptions import StopConsumer
 from channels.generic.websocket import WebsocketConsumer
 from sklearn.cluster import KMeans
-
+from sklearn.utils import shuffle
 
 from .GeneticAlgorithm.GeneticAlgorithm import GeneticAlgorithm
 from .PsoAlgorithm.PSO import PSO
@@ -87,8 +86,7 @@ class GeneticImageConsumer(WebsocketConsumer):
 
 
 class PsoImageConsumer(WebsocketConsumer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
+    def __init__(self):
         self.max_iter = 150
         self.width = 128
         self.height = 128
@@ -97,6 +95,7 @@ class PsoImageConsumer(WebsocketConsumer):
         self.thread = None
         self.resolver = None
         self.target_image = []
+        WebsocketConsumer.__init__(self)
 
     def connect(self):
         self.accept()
@@ -138,11 +137,11 @@ class PsoImageConsumer(WebsocketConsumer):
         raise StopConsumer
 
 class KMeansImageConsumer(WebsocketConsumer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
+    def __init__(self):
         self.thread = None
         self.n_colors = 4
         self.target_image = []
+        WebsocketConsumer.__init__(self)
 
     def connect(self):
         self.accept()
@@ -164,7 +163,7 @@ class KMeansImageConsumer(WebsocketConsumer):
         w, h, d = image.shape
         # convert to a 2d array
         image_array = np.reshape(image, (w * h, d))
-        image_sample = random.shuffle(image_array, random_state=42)[:1000]
+        image_sample = shuffle(image_array, random_state=42)[:1000]
 
         # Fit kmeans
         kMeans = KMeans(n_clusters=self.n_colors, random_state=42).fit(image_sample)
@@ -172,10 +171,11 @@ class KMeansImageConsumer(WebsocketConsumer):
         # get color indices for full image
         labels = kMeans.predict(image_array)
 
-        segmentated_image = 255 * self.reconstruct_image(kMeans.cluster_centers_, labels, w, h)
+        segmentated_image = (255 * self.reconstruct_image(kMeans.cluster_centers_, labels, w, h)).astype(np.uint8)
         image_generated_bytes = image_to_byte_array(Image.fromarray(segmentated_image))
         encoded_string = str(base64.b64encode(image_generated_bytes))
         self.send(json.dumps({'iteration': 'KMeans image segmentation', 'message': encoded_string}))
+        self.close()
 
     def reconstruct_image(self, cluster_centers, labels, w, h):
         d = cluster_centers.shape[1]

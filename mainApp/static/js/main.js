@@ -76,6 +76,7 @@ $(()=>{
     $('#k_means_algorithm').on('click',()=>{
         hide_all()
         closeExistingSocket(socket)
+        $('#k_means_algorithm_params').show()
     })
 
     $('#cancel').on('click',async ()=>{
