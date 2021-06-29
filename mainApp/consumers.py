@@ -63,12 +63,12 @@ class GeneticImageConsumer(WebsocketConsumer):
         self.thread.start()
 
     def next(self):
-        for _ in range(self.max_iter):
-            print(iter)
+        for iteration in range(self.max_iter):
+            print(iteration)
             np_array_generated = self.resolver.step()
             image_generated_bytes = image_to_byte_array(Image.fromarray(np_array_generated))
             encoded_string = str(base64.b64encode(image_generated_bytes))
-            self.send(json.dumps({'iteration': str(iter), 'message': encoded_string}))
+            self.send(json.dumps({'iteration': str(iteration), 'message': encoded_string}))
             if self.cancel:
                 break
 
